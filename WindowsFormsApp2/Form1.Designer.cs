@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -64,16 +65,27 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.button12 = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Sector = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ret_band = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cascade_via = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Serial_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.E_Tilt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(2, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -111,6 +123,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tracker parser";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(558, 320);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.TabIndex = 29;
+            this.button12.Text = "Refresh";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.textBox6_CDD_TextChanged);
             // 
             // button11
             // 
@@ -298,7 +320,6 @@
             this.label5.Size = new System.Drawing.Size(51, 13);
             this.label5.TabIndex = 2;
             this.label5.Text = "Template";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // button4
             // 
@@ -316,7 +337,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(220, 20);
             this.textBox2.TabIndex = 0;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // tabPage1
             // 
@@ -447,15 +467,73 @@
             this.saveFileDialog1.DefaultExt = "txt";
             this.saveFileDialog1.InitialDirectory = "\"C:\\Users\\eerlbav\\OneDrive - Ericsson AB\\Desktop\\Integration\"";
             // 
-            // button12
+            // tabPage3
             // 
-            this.button12.Location = new System.Drawing.Point(558, 320);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
-            this.button12.TabIndex = 29;
-            this.button12.Text = "Refresh";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.textBox6_CDD_TextChanged);
+            this.tabPage3.Controls.Add(this.dataGridView1);
+            this.tabPage3.Controls.Add(this.textBox8);
+            this.tabPage3.Controls.Add(this.textBox7);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1249, 564);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "RET";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(23, 36);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(280, 20);
+            this.textBox7.TabIndex = 0;
+            this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(23, 102);
+            this.textBox8.Multiline = true;
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(331, 147);
+            this.textBox8.TabIndex = 1;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Sector,
+            this.Ret_band,
+            this.Cascade_via,
+            this.Serial_number,
+            this.E_Tilt});
+            this.dataGridView1.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.dataGridView1.Location = new System.Drawing.Point(626, 51);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(546, 161);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // Sector
+            // 
+            this.Sector.HeaderText = "Sector";
+            this.Sector.Name = "Sector";
+            // 
+            // Ret_band
+            // 
+            this.Ret_band.HeaderText = "Ret_band";
+            this.Ret_band.Name = "Ret_band";
+            // 
+            // Cascade_via
+            // 
+            this.Cascade_via.HeaderText = "Cascade_via";
+            this.Cascade_via.Name = "Cascade_via";
+            // 
+            // Serial_number
+            // 
+            this.Serial_number.HeaderText = "Serial_number";
+            this.Serial_number.Name = "Serial_number";
+            // 
+            // E_Tilt
+            // 
+            this.E_Tilt.HeaderText = "E_Tilt";
+            this.E_Tilt.Name = "E_Tilt";
             // 
             // Form1
             // 
@@ -470,6 +548,9 @@
             this.tabPage2.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -513,6 +594,15 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sector;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ret_band;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cascade_via;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Serial_number;
+        private System.Windows.Forms.DataGridViewTextBoxColumn E_Tilt;
     }
 }
 

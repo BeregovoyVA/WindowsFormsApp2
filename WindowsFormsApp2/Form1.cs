@@ -18,9 +18,7 @@ namespace WindowsFormsApp2
             InitializeComponent();            
         }
 
-        string TNCascade;
-
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -152,23 +150,27 @@ namespace WindowsFormsApp2
         {
 
         }
-     
-       
-        
 
 
 
 
 
+        //Глобальные переменные
+        string[] words;
+        string REGION = "";
+        string TNCascade = "";
 
 
-     //Tracker
+
+
+        //Tracker
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             //richTextBox3.Clear();
             string text = textBox3.Text;
             if (text == "") return;
-            string[] words = text.Split(new char[] { '\t' });
+            //string[] words = text.Split(new char[] { '\t' });
+            words = text.Split(new char[] { '\t' });
             if ((words.Length < 14) || (textBox3.Text==""))
             {
                 MessageBox.Show("Не достаточно исходных данных. Нужно 14столбцов из Tracker (Region<---->Reh3G)!");
@@ -193,6 +195,7 @@ namespace WindowsFormsApp2
                     if (words[0].Substring(4) == element)
                     {
                         RBSNAME = Regnum_array[count] + RBSNAME;
+                        REGION = element;
                         break;
                     }
                     else { count++; }
@@ -267,7 +270,7 @@ namespace WindowsFormsApp2
             else
             {
                 richTextBox3.Text = richTextBox3.Text + "$LTE := 1" + "\n";
-                RBSNAME = "L" + RBSNAME;
+                RBSNAME = "L" + RBSNAME;                
                 saveFileDialog1.FileName = saveFileDialog1.FileName + "L";  //44665_Before_BB_L
                 //Ищем порты
                 string port_LTE_26 = "";
@@ -629,17 +632,7 @@ namespace WindowsFormsApp2
             }
 
         }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        //Окно переменных для скрипта
         private void richTextBox3_TextChanged(object sender, EventArgs e)
         {
             string template = richTextBox2.Text;
@@ -677,12 +670,7 @@ namespace WindowsFormsApp2
                 richTextBox2.Text += element3 + "\r\n";
             }
         }
-
-    
-        
-        
-        
-     //Refresh
+        //Кнопка Переменные -> Template
         private void button5_Click(object sender, EventArgs e)
         {
             string template = richTextBox2.Text;
@@ -720,26 +708,18 @@ namespace WindowsFormsApp2
                 richTextBox2.Text += element3 + "\r\n";
             }
         }
-
+        //Кнопка Save Script as
         private void button6_Click(object sender, EventArgs e)
         {
-            //saveFileDialog1.FileName = "";  //words[0] EAS-BAR
-            saveFileDialog1.InitialDirectory = "C:\\Users\\eerlbav\\OneDrive - Ericsson AB\\Desktop\\Integration";
+            saveFileDialog1.InitialDirectory = "C:\\Users\\eerlbav\\OneDrive - Ericsson AB\\Desktop\\Integration\\"+ REGION;
             if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
                 return;
-            // получаем выбранный файл
-
             string filename = saveFileDialog1.FileName;
             // сохраняем текст в файл
             System.IO.File.WriteAllText(filename, richTextBox2.Text);
             MessageBox.Show("Файл сохранен");
         }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        //Кнопка reload_template
         private void button7_reload_template(object sender, EventArgs e)
         {
             if (textBox2.Text != "")
@@ -749,30 +729,19 @@ namespace WindowsFormsApp2
                 richTextBox2.LoadFile(openFileDialog1.FileName, RichTextBoxStreamType.PlainText);
             }
         }
-
+        //Кнопка Очистки Tracker
         private void button8_Click(object sender, EventArgs e)
         {
             textBox3.Text = "";
             richTextBox3.Text = "";
 
         }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            //Form1.textBox5_TextChanged();
-        }
-
+        //Кнопка очистить скрипт и переменные для скрипта
         private void button10_Click(object sender, EventArgs e)
         {
             richTextBox3.Text = "";
             richTextBox4.Text = "";
         }
-
-
-
-
-
-
         //CDD!!!!!!!!!!!!!!!!!!!!!!!!
         private void textBox6_CDD_TextChanged(object sender, EventArgs e)
         {
@@ -1108,93 +1077,17 @@ namespace WindowsFormsApp2
                         }
                     }
                 }
-            }
+            }                                  
+        }
 
-
-            //string[] results = new string[str.GetLength(0)];
-            //for (int i = 0; i < results.Length; i++)
-            //{
-            //    results[i] = str[i].Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-            //}
-
-            //Парсинг строк по разным массивам
-            //for (int i = 0; i < str.Length; i++)
-            //{
-            //    string[] str_0 = str[0].Split(new char[] { '\t' }); //str_0[] - поля заголовока
-            //}
-
-
-
-            ////Определяем кол-во секторов и диапазоны
-            ////определяем диапазоны L18, L26, ARSL18, ARSL26. пределяем по cid
-            //string L26 = 0; string L18 = 0; string ARSL26 = 0; string ARSL18 = 0;
-            ////CellId
-            //for (int i = 0; i < str_0.Length; i++)
-            //{
-            //    if (str_0[i] == "CellId")
-            //    {
-            //        for (int j = 1; j < str.Length; j++)
-            //        {
-
-            //        }
-
-
-            //    }
-
-            //}
-
-
-
-
-
-            //if (str.Length != 2)
-            //{
-            //    MessageBox.Show("Нужно 2 строки (заголовок и данные)!");
-            //    textBox5.Clear();
-            //    return;
-            //}
-            //Анализ
-            //string[] str_0 = str[0].Split(new char[] { '\t' }); //str_0[] - поля заголовока
-            //string[] str_1 = str[1].Split(new char[] { '\t' }); //str_1[] - поля данных
-            //for (int i = 0; i < str_0.Length; i++)
-            //{
-            //    //ABIS
-            //    if (str_0[i] == "ABIS")
-            //    {
-            //        //провека на корректность ip (содержит 4 точки)                    
-            //        int count = str_1[i].ToCharArray().Where(j => j == '.').Count();
-            //        if (count != 3) continue;
-            //        string abis_mask = str_1[i + 1].Replace(" ", "");
-            //        switch (abis_mask)
-            //        {
-            //            case "255.255.255.224":
-            //                abis_mask = "/27";
-            //                break;
-            //            case "255.255.255.240":
-            //                abis_mask = "/28";
-            //                break;
-            //            case "255.255.255.252":
-            //                abis_mask = "/30";
-            //                break;
-            //            default:
-            //                abis_mask = "/???????????";
-            //                break;
-            //        }
-            //        richTextBox3.Text = richTextBox3.Text + "$GSM_IP := " + str_1[i].Replace(" ", "") + abis_mask + "\n";
-            //        richTextBox3.Text = richTextBox3.Text + "$GSM_DG := " + str_1[i + 2].Replace(" ", "") + "\n";
-            //        richTextBox3.Text = richTextBox3.Text + "$GSM_Vlan := " + str_1[i + 3].Replace(" ", "") + "\n";
-            //        //Bridge                    
-            //        if (richTextBox3.Text.IndexOf("$Bridge := 1") != -1)
-            //        {
-            //            if (TNCascade.Substring(TNCascade.Length - 2) == "2G")
-            //            {
-            //                richTextBox3.Text = richTextBox3.Text + "$OAMVLAN := " + str_1[i + 7].Replace(" ", "") + "\n";
-            //                richTextBox3.Text = richTextBox3.Text + "$TRAFFICVLAN := " + str_1[i + 3].Replace(" ", "") + "\n";
-            //            }
-            //        }
-
-            //    }
-            //}
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+            System.Net.WebClient wc = new System.Net.WebClient();
+            String Response = wc.DownloadString(textBox7.Text);
+            textBox8.Text = Response;
+            //id="conv0" value="(64.25)"
+            //String Rate = System.Text.RegularExpressions.Regex.Match(Response, @"id=""conv0"" value=""([0-9]+\.[0-9]+)""").Groups[1].Value;
+            //return "АксонБанк: " + Rate + " р. \r\n";
         }
     }
 }
